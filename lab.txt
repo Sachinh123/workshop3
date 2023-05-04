@@ -1,0 +1,962 @@
+Lab Program 1:
+Aim: Introduce the java fundamentals, data types, operators in java
+Program: Write a java program that prints all real solutions to the quadratic equation ax2+bx+c=0. Read in a, b, c and use the quadratic formula.
+USING INPUTSTREAMREADER
+import java.io.*;
+public class Quadratic {
+public static void main(String args[])throws IOException
+{
+double x1,x2,disc,a,b,c;
+InputStreamReader obj=new InputStreamReader(System.in);
+BufferedReader br=new BufferedReader(obj);
+System.out.println("enter a,b,c values");
+a=Double.parseDouble(br.readLine());
+b=Double.parseDouble(br.readLine());
+c=Double.parseDouble(br.readLine());
+disc=(b*b)-(4*a*c);
+if(disc==0)
+{
+System.out.println("roots are Real and Equal ");
+x1=x2=-b/(2*a);
+System.out.println("Root1="+x1+"\nRoot2="+x2);
+}
+else if(disc>0)
+{
+System.out.println("roots are Real and Distict");
+x1=(-b+Math.sqrt(disc))/(2*a);
+x2=(-b-Math.sqrt(disc))/(2*a);
+System.out.println("Root1="+x1+"\nRoot2="+x2);
+}
+else
+{
+System.out.println("roots are imaginary");
+}
+}
+}
+USING SCANNER CLASS
+import java.util.Scanner;
+public class Quadratic_Scanner {
+public static void main(String[] Strings)
+{
+Scanner input = new Scanner(System.in);
+System.out.print("Enter the value of a: ");
+double a = input.nextDouble();
+System.out.print("Enter the value of b: ");
+double b = input.nextDouble();
+System.out.print("Enter the value of c: ");
+double c = input.nextDouble();
+double d= b * b - 4.0 * a * c;
+if (d> 0.0)
+{
+double r1 = (-b + Math.sqrt(d)) / (2 * a);
+double r2 = (-b - Math.sqrt(d)) / (2 * a);
+System.out.println("The roots are Real and Disctict.
+\nRoot1=" + r1 + " \nRoot2= " + r2);
+}
+else if (d == 0.0)
+{
+double r1 = -b / (2.0 * a);
+System.out.println("The roots are Real and Equal.
+\n Root1= " + r1+"\n Root2="+r1);
+}
+else
+{
+System.out.println("Roots are not real (Immaginary)");
+}
+}
+}
+Output:
+1. enter a,b,c values
+1
+1
+1
+roots are imaginary
+2. enter a,b,c values
+8
+-4
+-2
+roots are Real and Distict
+Root1=0.8090169943749475
+Root2=-0.30901699437494745
+3. enter a,b,c values
+1
+-2
+1
+roots are Real and Equal
+Root1=1.0
+Root2=1.0
+Lab Program 2:
+Aim: Demonstrating creation of java classes, objects, constructors, declaration and initialization of variables.
+Program: Create a Java class called Student with the following details as variables within it.
+USN
+Name
+Branch
+Phone
+Write a Java program to create n Student objects and print the USN, Name, Branch, and Phone of these objects with suitable headings.
+import java.util.Scanner;
+class Student
+{
+String USN, Name, Branch, Phone;
+Scanner input = new Scanner(System.in);
+void read()
+{ System.out.print("Enter USN:");
+USN = input.nextLine();
+System.out.print("Enter Name:");
+Name = input.nextLine();
+System.out.print("Enter Branch:");
+Branch = input.nextLine();
+System.out.print("Enter Phone:");
+Phone = input.nextLine();
+}
+void display()
+{
+System.out.printf("%-20s %-20s %-20s %-20s", USN, Name, Branch, Phone);
+}
+}
+public class StudentDetails
+{
+public static void main(String[] args)
+{
+Scanner input = new Scanner(System.in);
+System.out.println("Student Details Entry Program");
+System.out.println("-----------------------------\n"); System.out.print("Enter number of student details to be created:");
+int number = input.nextInt();
+Student s[] = new Student[number];
+// Read student details into array of student objects
+for (int i = 0; i < number; i++)
+{
+System.out.println("\nEnter Student - " + (i+1) + " Details");
+System.out.println("---------------------");
+s[i] = new Student();
+s[i].read();
+}
+// Display student information
+System.out.printf("\n%-20s %-20s %-20s %-20s", "USN", "NAME", "BRANCH",
+"PHONE");
+for (int i = 0; i < number; i++)
+{
+System.out.println();
+s[i].display();
+}
+input.close();
+}
+}
+/*
+OUTPUT:
+Student Details Entry Program
+-----------------------------
+Enter number of student details to be created:3
+Enter Student - 1 Details
+---------------------
+Enter USN:2HN21CS000
+Enter Name:PRAMOD
+Enter Branch:CSE
+Enter Phone:9743202717
+Enter Student - 2 Details
+---------------------
+Enter USN:2HN21CS100
+Enter Name:RAHUL
+Enter Branch:CSE
+Enter Phone:9988774455
+Enter Student - 3 Details
+---------------------
+Enter USN:2HN21CS101
+Enter Name:VIRAT
+Enter Branch:CSE
+Enter Phone:9988766455
+USN NAME BRANCH PHONE
+2HN21CS000 PRAMOD CSE 9743202717
+2HN21CS100 RAHUL CSE 9988774455
+2HN21CS101 VIRAT CSE 9988766455
+Lab Program 3:
+Aim: Discuss the various Decision-making statements, loop constructs in java
+A. Write a program to check prime number
+public class Prime
+{
+public static void main(String args[]){
+int i,m=0,flag=0;
+int n=3;//it is the number to be checked
+m=n/2;
+if(n==0||n==1)
+{
+System.out.println(n+" is not prime number");
+}
+else
+{
+for(i=2;i<=m;i++)
+{
+if(n%i==0)
+{
+System.out.println(n+" is not prime number");
+flag=1;
+break;
+}
+}
+if(flag==0) { System.out.println(n+" is prime number"); }
+}//end of else
+}
+}
+B.Write a program for Arithmetic calculator using switch case menu.
+Lab Program 4:
+Aim: Demonstrate the core object-oriented concept of Inheritance, polymorphism.
+Program: Design a super class called Staff with details as StaffId, Name, Phone & Salary. Extend this class by writing three subclasses namely Teaching (domain, publications), Technical (skills), and Contract (period). Write a Java program to read and display at least 3 staff objects of all three categories.
+import java.util.Scanner;
+class Staff {
+String StaffID, Name, Phone, Salary;
+Scanner input = new Scanner(System.in);
+void read() {
+System.out.println("Enter StaffID");
+StaffID = input.nextLine();
+System.out.println("Enter Name");
+Name = input.nextLine();
+System.out.println("Enter Phone");
+Phone = input.nextLine();
+System.out.println("Enter Salary");
+Salary = input.nextLine();
+}
+void display() {
+System.out.printf("\n%-15s", "STAFFID: ");
+System.out.printf("%-15s \n", StaffID);
+System.out.printf("%-15s", "NAME: ");
+System.out.printf("%-15s \n", Name);
+System.out.printf("%-15s", "PHONE:");
+System.out.printf("%-15s \n", Phone);
+System.out.printf("%-15s", "SALARY:");
+System.out.printf("%-15s \n", Salary);
+}
+}
+class Teaching extends Staff {
+String Domain, Publication;
+void read_Teaching() {
+super.read(); // call super class read method
+System.out.println("Enter Domain");
+Domain = input.nextLine();
+System.out.println("Enter Publication");
+Publication = input.nextLine();
+}
+void display() {
+super.display(); // call super class display() method
+System.out.printf("%-15s", "DOMAIN:");
+System.out.printf("%-15s \n", Domain);
+System.out.printf("%-15s", "PUBLICATION:");
+System.out.printf("%-15s \n", Publication);
+}
+}
+class Technical extends Staff {
+String Skills;
+void read_Technical() {
+super.read(); // call super class read method
+System.out.println("Enter Skills");
+Skills = input.nextLine();
+}
+void display() {
+super.display(); // call super class display() method
+System.out.printf("%-15s", "SKILLS:");
+System.out.printf("%-15s \n", Skills);
+}
+}
+class Contract extends Staff {
+String Period;
+void read_Contract() {
+super.read(); // call super class read method
+System.out.println("Enter Period");
+Period = input.nextLine();
+}
+void display() {
+super.display(); // call super class display() method
+System.out.printf("%-15s", "PERIOD:");
+System.out.printf("%-15s \n", Period);
+}
+}
+class Staffdetails {
+public static void main(String[] args) {
+Scanner input = new Scanner(System.in);
+System.out.println("Enter number of staff details to be created");
+int n = input.nextInt();
+Teaching steach[] = new Teaching[n];
+Technical stech[] = new Technical[n];
+Contract scon[] = new Contract[n];
+// Read Staff information under 3 categories
+for (int i = 0; i < n; i++) {
+System.out.println("Enter Teaching staff information");
+steach[i] = new Teaching();
+steach[i].read_Teaching();
+}
+for (int i = 0; i < n; i++) {
+System.out.println("Enter Technical staff information");
+stech[i] = new Technical();
+stech[i].read_Technical();
+}
+for (int i = 0; i < n; i++) {
+System.out.println("Enter Contract staff information");
+scon[i] = new Contract();
+scon[i].read_Contract();
+}
+// Display Staff Information
+System.out.println("\n STAFF DETAILS: \n");
+System.out.println("-----TEACHING STAFF DETAILS----- ");
+for (int i = 0; i < n; i++) {
+steach[i].display();
+}
+System.out.println();
+System.out.println("-----TECHNICAL STAFF DETAILS-----");
+for (int i = 0; i < n; i++) {
+stech[i].display();
+}
+System.out.println();
+System.out.println("-----CONTRACT STAFF DETAILS-----");
+for (int i = 0; i < n; i++) {
+scon[i].display();
+}
+input.close();
+}
+}
+Output:
+Enter number of staff details to be created
+2
+Enter Teaching staff information
+Enter StaffID
+CSTS23
+Enter Name
+Prasanna Patil
+Enter Phone
+9743202717
+Enter Salary
+51000
+Enter Domain
+CSE
+Enter Publication
+10
+Enter Teaching staff information
+Enter StaffID
+CSTS28
+Enter Name
+Anand Kumar H N
+Enter Phone
+8899774455
+Enter Salary
+50000
+Enter Domain
+CSE
+Enter Publication
+11
+Enter Technical staff information
+Enter StaffID
+CSTS36
+Enter Name
+Kumar
+Enter Phone
+9988776655
+Enter Salary
+30000
+Enter Skills
+Java
+Enter Technical staff information
+Enter StaffID
+CSTS42
+Enter Name
+Siddaraju
+Enter Phone
+8798789879
+Enter Salary
+28000
+Enter Skills
+Python
+Enter Contract staff information
+Enter StaffID
+CSTS43
+Enter Name
+Aaryan
+Enter Phone
+6549873214
+Enter Salary
+21000
+Enter Period
+2
+Enter Contract staff information
+Enter StaffID
+CSTS50
+Enter Name
+AMIT
+Enter Phone
+4656778945
+Enter Salary
+20000
+Enter Period
+3
+STAFF DETAILS:
+-----TEACHING STAFF DETAILS-----
+STAFFID: CSTS23
+NAME: Prasanna Patil
+PHONE: 9743202717
+SALARY: 51000
+DOMAIN: CSE
+PUBLICATION: 10
+STAFFID: CSTS28
+NAME: Anand Kumar H N
+PHONE: 8899774455
+SALARY: 50000
+DOMAIN: CSE
+PUBLICATION: 11
+-----TECHNICAL STAFF DETAILS-----
+STAFFID: CSTS36
+NAME: Kumar
+PHONE: 9988776655
+SALARY: 30000
+SKILLS: Java
+STAFFID: CSTS42
+NAME: Siddaraju
+PHONE: 8798789879
+SALARY: 28000
+SKILLS: Python
+-----CONTRACT STAFF DETAILS-----
+STAFFID: CSTS43
+NAME: Aaryan
+PHONE: 6549873214
+SALARY: 21000
+PERIOD: 2
+STAFFID: CSTS50
+NAME: AMIT
+PHONE: 4656778945
+SALARY: 20000
+PERIOD: 3
+Lab Program 5:
+Aim: Introduce concepts of method overloading, constructor overloading, overriding.
+Program: Write a java program for Method overloading and Constructor overloading.
+Method overloading:
+import java.io.*;
+public class MethodOverloading
+{
+public static void main(String args[])
+{
+System.out.println("add() with 2 parameters");
+System.out.println(add(4, 6));
+System.out.println("add() with 3 parameters");
+System.out.println(add(4, 6, 7));
+}
+static int add(int a, int b)
+{
+return a + b;
+}
+static int add(int a, int b, int c)
+{
+return a + b + c;
+}
+}
+Output:
+add() with 2 parameters
+10
+add() with 3 parameters
+17
+Constructor overloading:
+public class Student {
+//instance variables of the class
+int id;
+String name;
+Student()
+{ System.out.println("this a default constructor");
+}
+Student(int i, String n)
+{
+id = i;
+name = n;
+}
+public static void main(String[] args)
+{
+//object creation
+Student s1 = new Student();
+System.out.println("\nDefault Constructor values:");
+System.out.println("Student Id : "+s1.id + "\nStudent Name : "+s1.name);
+System.out.println("\nParameterized Constructor values: \n"); Student s2 = new Student(10, "Kalpana");
+System.out.println("Student Id : "+s2.id + "\nStudent Name : "+s2.name);
+}
+}
+Output:
+this a default constructor
+Default Constructor values:
+Student Id : 0
+Student Name : null
+Parameterized Constructor values:
+Student Id : 10
+Student Name : Kalpana
+Lab Program 6:
+Aim: Introduce the concept of Abstraction, packages.
+Program: Develop a java application to implement currency converter (Dollar to INR, EURO to INR, Yen to INR and vice versa), distance converter (meter to KM, miles to KM and vice versa), time converter (hours to minutes, seconds and vice versa) using packages.
+//Dollar.java
+package converter;
+import java.util.*;
+public class Dollar{
+public void Convert(){
+double inr,usd,doll;
+System.out.println("\nDollar to INR");
+Scanner in=new Scanner(System.in); System.out.print("Enter INR to convert into USD : ");
+inr=in.nextDouble(); System.out.print("Enter Current USD reate : ");
+doll=in.nextDouble();
+usd=inr/doll;
+System.out.println("\n INR="+inr+"\n USD="+usd);
+}
+}
+// Compute.java
+import converter.Dollar;
+public class Compute {
+public static void main(String s[]){
+Dollar d=new Dollar();
+d.Convert();
+}
+}
+Output:
+Dollar to INR
+Enter INR to convert into USD : 100
+Enter Current USD reate : 81.5
+INR=100.0
+USD=1.2269938650306749
+Lab Program 7:
+Aim: Introduction to abstract classes, abstract methods, and Interface in java.
+Program: Write a program to generate the resume. Create 2 Java classes Teacher (data: personal information, qualification, experience, achievements) and Student (data: personal information, result, discipline) which implements the java interface Resume with the method biodata().
+interface Resume {
+void bioData ();
+}
+class Teacher implements Resume {
+String name,Qualification,achievements;
+float experience;
+public void bioData () {
+name="Prasanna Patil";
+Qualification="M.Tech";
+achievements="Android Developer";
+experience=9.6f;
+System.out.println("Teacher Resume");
+System.out.println("Name: "+name);
+System.out.println("Qualification: "+Qualification);
+System.out.println("Achievements: "+achievements);
+System.out.println("Experience: "+experience);
+}
+}
+class Student implements Resume {
+String name, Discipline;
+float result;
+public void biodata(){
+name="Mahendra Singh Dhoni";
+Discipline="CSE";
+result=8.7f;
+System.out.println("STUDENT Resume");
+System.out.println("Name: "+name);
+System.out.println("Discipline: "+Discipline);
+System.out.println("Result: "+result+"CGPA");
+}
+}
+public class InterfaceEx{
+public static void main(String[] args){
+Teacher T1=new Teacher();
+T1.bioData();
+Student S1=new Student();
+S1.biodata();
+}
+}
+Output:
+Teacher Resume
+Name: Prasanna Patil
+Qualification: M.Tech
+Achievements: Android Developer
+Experience: 9.6
+STUDENT Resume
+Name: Mahendra Singh Dhoni
+Discipline: CSE
+Result: 8.7CGPA
+Lab Program 8:
+Aim: Demonstrate creation of threads using Thread class and Runnable interface, multithreaded programming.
+Program: Write a Java program that implements a multi-thread application that has three threads. First thread generates a random integer for every 1 second; second thread computes the square of the number and prints; third thread will print the value of cube of the number.
+import java.util.Random;
+import java.util.Scanner;
+class SquareThread implements Runnable {
+int x;
+SquareThread(int x) {
+this.x = x;
+}
+public void run() { System.out.println("Thread Name: Square Thread and Square of"+ x +" is: "+ x * x);
+}
+}
+class CubeThread implements Runnable {
+int x;
+CubeThread(int x) {
+this.x = x;
+}
+public void run() { System.out.println("Thread Name: Cube Thread and Cube of "+x+" is: "+ x * x * x);
+}
+}
+class RandomThread implements Runnable {
+Random r;
+Thread t2, t3;
+public void run() {
+int num;
+r = new Random();
+try
+{ Scanner input = new Scanner(System.in); System.out.print("Enter the Number of Random Numbers:");
+int n = input.nextInt(); System.out.println();
+for(int i=0 ; i<n ; i++)
+{
+num = r.nextInt(100); System.out.println("Main Thread and Generated Number is: "+ num);
+t2 = new Thread(new SquareThread(num));
+t2.start();
+t3 = new Thread(new CubeThread(num));
+t3.start();
+Thread.sleep(1000); System.out.println("--------------------------------------");
+}
+}
+catch (Exception ex)
+{ System.out.println("Interrupted Exception");
+}
+}
+}
+public class MainThread
+{
+public static void main(String[] args)
+{
+RandomThread thread_obj = new RandomThread();
+Thread t1 = new Thread(thread_obj);
+t1.start();
+}
+}
+OUTPUT:
+-------
+Enter the Number of Random Numbers:5
+Main Thread and Generated Number is 95
+Thread Name: Square Thread and Square of 95 is: 9025
+Thread Name: Cube Thread and Cube of 95 is: 857375
+--------------------------------------
+Main Thread and Generated Number is 11
+Thread Name: Square Thread and Square of 11 is: 121
+Thread Name: Cube Thread and Cube of 11 is: 1331
+--------------------------------------
+Main Thread and Generated Number is 95
+Thread Name: Square Thread and Square of 95 is: 9025
+Thread Name: Cube Thread and Cube of 95 is: 857375
+--------------------------------------
+Main Thread and Generated Number is 3
+Thread Name: Square Thread and Square of 3 is: 9
+Thread Name: Cube Thread and Cube of 3 is: 27
+--------------------------------------
+Main Thread and Generated Number is 72
+Thread Name: Square Thread and Square of 72 is: 5184
+Thread Name: Cube Thread and Cube of 72 is: 373248
+Lab Program 9:
+Aim: Introduce java Collections.
+Program: Write a program to perform string operations using ArrayList. Write functions for the following a. Append - add at end b. Insert – add at particular index c. Search d. List all string starts with given letter.
+import java.util.*;
+public class ArrayL{
+ArrayList<String> list=new ArrayList<String>();
+public void array_display(){
+list.add("CSE");
+list.add("ECE");
+list.add("MECH");
+System.out.println("ArrayList Elements are");
+System.out.println(list);
+System.out.print("");
+}
+public void append_at_end(){
+System.out.println("Enter the element to append at end");
+Scanner inputObj=new Scanner(System.in);
+String ele=inputObj.next();
+list.add(ele);
+System.out.println(list);
+System.out.print("");
+}
+public void insert_at_pos(){
+System.out.println("Enter the position and element to be inserted");
+Scanner inputObj=new Scanner(System.in);
+int posindex=inputObj.nextInt();
+String ele=inputObj.next();
+list.add(posindex,ele);
+System.out.println(list);
+System.out.print("");
+}
+public void search_element(){
+System.out.println("Enter the array element to be searched");
+Scanner inputObj=new Scanner(System.in);
+String ele=inputObj.next();
+int index=list.indexOf(ele);
+if(index==-1){
+System.out.println("Element not found");
+}
+else{
+System.out.println("Element found at index: "+index);
+}
+}
+public void print(){
+System.out.println("Enter the starting character to print strings");
+Scanner inputObj=new Scanner(System.in);
+char input_char=inputObj.next().charAt(0);
+String strc=Character.toString(input_char);
+System.out.println("String starting with character"+ strc);
+for(int i =0;i<list.size();i++){
+if(list.get(i).startsWith(strc)){
+System.out.println(list.get(i));
+}
+}
+}
+public static void main(String args[]){
+ArrayL obj=new ArrayL();
+obj.array_display();
+obj.append_at_end();
+obj.insert_at_pos();
+obj.search_element();
+obj.print();
+}
+}
+OUTPUT:
+ArrayList Elements are
+[CSE, ECE, MECH]
+Enter the element to append at end
+CIVIL
+[CSE, ECE, MECH, CIVIL]
+Enter the position and element to be inserted
+1
+ISE
+[CSE, ISE, ECE, MECH, CIVIL]
+Enter the array element to be searched
+ECE
+Element found at2
+Enter the starting character to print strings
+C
+String starting with characterC
+CSE
+CIVIL
+Lab Program 10:
+Aim: Exception handling in java, introduction to throwable class, throw, throws, finally.
+Program: Write a Java program to read two integers a and b. Compute a/b and print, when b is not zero. Raise an exception when b is equal to zero.
+import java.util.Scanner;
+class exception{
+public static void main(String[] args) {
+int a, b, result;
+Scanner input = new Scanner(System.in);
+System.out.println("Input two integers");
+a = input.nextInt();
+b = input.nextInt();
+try {
+result = a / b;
+System.out.println("Result = " + result);
+}
+catch (ArithmeticException e) {
+System.out.println("Exception caught:Division by zero.");
+}
+}
+}
+Lab Program 11:
+Aim: Introduce File operations in java.
+Program: Write a java program that reads a file name from the user, displays information about whether the file exists, whether the file is readable, or writable, the type of file and the length of the file in bytes.
+import java.io.File;
+import java.util.*;
+public class FileOp {
+public static void main(String args[]){
+Scanner obj=new Scanner(System.in);
+System.out.println("Enter the File Name:");
+String fname=obj.next();
+File f=new File(fname);
+f.setWritable(true);
+System.out.println(f.exists() ? "File Exists" : "File Does not Exist");
+System.out.println(f.canWrite() ? "File is Writable" : "File is not Writable");
+System.out.println(f.canRead() ? "File is Readable" : "File is not Readable");
+String filename=f.toString();
+int index=filename.lastIndexOf('.');
+if(index>0){
+String type=filename.substring(index+1);
+System.out.println("File type is: "+type);
+}
+else
+System.out.println("File does not have type");
+System.out.println("File Size: "+f.length()+ " Bytes");
+}
+}
+Output:
+ex1.txt
+HIT Computer Science and Engineering
+Enter the File Name:
+ex1.txt
+File Exists
+File is Writable
+File is Readable
+File type is: txt
+File Size: 36 Bytes
+Enter the File Name:
+abcd
+File Does not Exist
+File is not Writable
+File is not Readable
+File does not have type
+File Size: 0 Bytes
+Lab Program 12:
+Aim: Introduce java Applet, awt, swings.
+Program a): Develop an applet that displays a simple message in center of the screen.
+import java.applet.Applet;
+import java.awt.Graphics;
+/*
+<applet code="SimpleApplet.class" width=300 height="300"
+</applet>
+*/
+public class SimpleApplet extends Applet{
+public void paint(Graphics g){
+g.drawString("Welcome to Applet", 150, 150);
+}
+}
+Program b): Develop a simple calculator using Swings.
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+class Calculator implements ActionListener{
+JFrame frame=new JFrame();
+JTextField t=new JTextField();
+JButton b0,b1,b2,b3,b4,b5,b6,b7,b8,b9,bdot,badd,bsub,bmul,bdiv,beq,bclr;
+static double a=0,b=0,result=0;
+static int op=0;
+public void display(){
+frame.setTitle("Simple Calculator");
+frame.setSize(225,300);
+frame.setLayout(null);
+frame.setResizable(true);
+frame.setVisible(true);
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+t.setBounds(30,10,165,35);
+b1=new JButton("1");
+b1.setBounds(30, 50, 45, 40);
+b2=new JButton("2");
+b2.setBounds(70, 50, 45, 40);
+b3=new JButton("3");
+b3.setBounds(110, 50, 45, 40);
+badd=new JButton("+");
+badd.setBounds(150, 50, 45, 40);
+b4=new JButton("4");
+b4.setBounds(30, 90, 45, 40);
+b5=new JButton("5");
+b5.setBounds(70, 90, 45, 40);
+b6=new JButton("6");
+b6.setBounds(110, 90, 45, 40);
+bsub=new JButton("-");
+bsub.setBounds(150, 90, 45, 40);
+b7=new JButton("7");
+b7.setBounds(30, 130, 45, 40);
+b8=new JButton("8");
+b8.setBounds(70, 130, 45, 40);
+b9=new JButton("9");
+b9.setBounds(110, 130, 45, 40);
+bmul=new JButton("*");
+bmul.setBounds(150, 130, 45, 40);
+bdot=new JButton(".");
+bdot.setBounds(30, 170, 45, 40);
+b0=new JButton("0");
+b0.setBounds(70, 170, 45, 40);
+bclr=new JButton("C");
+bclr.setBounds(110, 170, 45, 40);
+bdiv=new JButton("/");
+bdiv.setBounds(150, 170, 45, 40);
+beq=new JButton("="); beq.setBounds(30, 210, 165, 40);
+frame.add(t);
+frame.add(b0);
+frame.add(b1);
+frame.add(b2);
+frame.add(b3);
+frame.add(b4);
+frame.add(b5);
+frame.add(b6);
+frame.add(b7);
+frame.add(b8);
+frame.add(b9);
+frame.add(bdot);
+frame.add(badd);
+frame.add(bsub);
+frame.add(bmul);
+frame.add(bdiv); frame.add(beq);
+frame.add(bclr);
+b0.addActionListener(this);
+b1.addActionListener(this);
+b2.addActionListener(this);
+b3.addActionListener(this);
+b4.addActionListener(this);
+b5.addActionListener(this);
+b6.addActionListener(this);
+b7.addActionListener(this);
+b8.addActionListener(this);
+b9.addActionListener(this);
+bdot.addActionListener(this);
+badd.addActionListener(this);
+bsub.addActionListener(this);
+bmul.addActionListener(this);
+bdiv.addActionListener(this); beq.addActionListener(this);
+bclr.addActionListener(this);
+}
+public void actionPerformed (ActionEvent e){
+if(e.getSource()==bclr){
+t.setText("");
+}
+if(e.getSource()==b0){
+t.setText(t.getText().concat("0"));
+}
+if(e.getSource()==b1){
+t.setText(t.getText().concat("1"));
+}
+if(e.getSource()==b2){
+t.setText(t.getText().concat("2"));
+}
+if(e.getSource()==b3){
+t.setText(t.getText().concat("3"));
+}
+if(e.getSource()==b4){
+t.setText(t.getText().concat("4"));
+}
+if(e.getSource()==b5){
+t.setText(t.getText().concat("5"));
+}
+if(e.getSource()==b6){
+t.setText(t.getText().concat("6"));
+}
+if(e.getSource()==b7){
+t.setText(t.getText().concat("7"));
+}
+if(e.getSource()==b8){
+t.setText(t.getText().concat("8"));
+}
+if(e.getSource()==b9){
+t.setText(t.getText().concat("9"));
+}
+if(e.getSource()==badd){
+a=Double.parseDouble(t.getText());
+op=1;
+t.setText("");
+}
+if(e.getSource()==bsub){
+a=Double.parseDouble(t.getText());
+op=2;
+t.setText("");
+}
+if(e.getSource()==bmul){
+a=Double.parseDouble(t.getText());
+op=3;
+t.setText("");
+}
+if(e.getSource()==bdiv){
+a=Double.parseDouble(t.getText());
+op=4;
+t.setText("");
+}
+if(e.getSource()==beq){
+b=Double.parseDouble(t.getText());
+switch(op){
+case 1: result=a+b;
+break;
+case 2: result=a-b;
+break;
+case 3: result=a*b;
+break;
+case 4: result=a/b;
+break;
+}
+t.setText(""+result);
+}
+}
+}
+public class SwingCalculator{
+public static void main(String args[]){
+Calculator obj=new Calculator();
+obj.display();
+}
+}
+Output:
